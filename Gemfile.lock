@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/eventmachine/eventmachine.git
+  revision: 9cb13a8a62363df5ebcc414169a3deb2c1608528
+  tag: v1.2.7
+  specs:
+    eventmachine (1.2.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,7 +104,6 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     erubi (1.10.0)
-    eventmachine (1.2.7-x64-mingw32)
     ffi (1.15.4-x64-mingw32)
     formatador (0.3.0)
     globalid (1.0.0)
@@ -266,6 +272,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  eventmachine (= 1.2.7)!
   gravatar_image_tag (~> 1.2)
   guard (~> 2.18)
   guard-livereload (~> 2.5, >= 2.5.2)

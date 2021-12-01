@@ -27,6 +27,8 @@ gem 'simple_form', '~> 5.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise'
 
+gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
