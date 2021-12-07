@@ -1,9 +1,10 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[ show edit update destroy ]
-
+ 
+  before_action :set_tweet, only: %i[ show edit update destroy retweet]
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all.order("created_at DESC")
+    @tweets = Tweet.page params[:page]
     @tweet = Tweet.new
   end
 
@@ -13,7 +14,21 @@ class TweetsController < ApplicationController
 
   # GET /tweets/new
   def new
-    @tweet = Tweet.new
+    @tweet = current_user.tweets.new
+    @retweet = Tweet.find(params["tweet_id"])
+
+  end
+
+  def like
+    @tweet = Tweet.find(params[:id])
+    @tweet.liked_by current_user
+    redirect_to '/'
+  end
+  
+  def dislike
+    @tweet = Tweet.find(params[:id])
+    @tweet.disliked_by current_user
+    redirect_to '/'
   end
 
   # GET /tweets/1/edit
@@ -22,8 +37,9 @@ class TweetsController < ApplicationController
 
   # POST /tweets or /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
-
+   
+    @tweet = current_user.tweets.new(tweet_params)
+    
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to root_path, notice: "Tweet was successfully created." }
@@ -57,6 +73,21 @@ class TweetsController < ApplicationController
     end
   end
 
+
+  def retweet
+    
+    tweet = current_user.tweets.new(retweet_id: @tweet.id)
+     
+    if tweet.save
+
+      redirect_to root_path
+        
+    else
+        redirect_to :back, alert: "unable to retweet"
+    
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
@@ -65,6 +96,11 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:tweet)
+      params.require(:tweet).permit(:tweet, :retweet_id).merge(user: current_user)
     end
+
+    
+
+  
+
 end

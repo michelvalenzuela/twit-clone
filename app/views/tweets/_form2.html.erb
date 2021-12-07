@@ -1,0 +1,11 @@
+<%= simple_form_for(@tweet) do |f| %>
+    <%= f.error_notification %>
+    <div class="field">
+      <div class="control">
+        <%= f.input :tweet, label: "Retweet about it", input_html:{ class: "textarea "}, wrapper: false, label_html: {class: "label"}, placeholder: "Compose a new tweeet...", autofocus: true %>
+        <%= f.hidden_field :retweet_id, value: @retweet.id%>
+          </div>
+    </div>
+    
+    <%= f.button :submit , method: :post, class: "button is-info" %>
+    <% end %>

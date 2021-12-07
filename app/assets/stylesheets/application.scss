@@ -30,3 +30,13 @@
 .notification:not(:last-child) {
 	margin-bottom: 0;
 }
+
+.modal {
+    display: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.modal.is-active {
+    display: flex;
+}

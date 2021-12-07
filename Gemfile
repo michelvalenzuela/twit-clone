@@ -26,6 +26,9 @@ gem 'bulma-rails', '~> 0.9.2'
 gem 'simple_form', '~> 5.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise'
+gem 'acts_as_votable'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+
 
 gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'
 

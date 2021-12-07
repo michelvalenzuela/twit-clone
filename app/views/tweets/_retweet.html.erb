@@ -1,0 +1,15 @@
+<div class="box">
+   <article class="media"> 
+   <div class="media-left">
+                <figure class="image is-64x64">
+                    <%=  gravatar_image_tag(tweet.retweet.user.email, size: 64, alt: tweet.retweet.user.name)%>
+                </figure>
+            </div>
+    <div class="media-content">
+        <div class="content">
+            <strong><%= tweet.retweet.user.name %> </strong><br />
+            <small><%= tweet.retweet.tweet %> </small><br />
+        </div>
+    </div>
+    </article>
+</div>

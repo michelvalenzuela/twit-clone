@@ -1,5 +1,39 @@
-<h1>New Tweet</h1>
 
-<%= render 'form', tweet: @tweet %>
+<div class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<h1 class="title">Retweet</h1>
+					<%= render 'tweets/form2' %>
 
-<%= link_to 'Back', tweets_path %>
+
+				<div class="box mt-5">
+					<article class="media"> 
+   				<div class="media-left">
+                <figure class="image is-64x64">
+                    <%=  gravatar_image_tag(@retweet.user.email, size: 64, alt: @retweet.user.name)%>
+                </figure>
+            	</div>
+    			<div class="media-content">
+        		<div class="content">
+            	<strong><%= @retweet.user.name %> </strong><br />
+            	<small><%= @retweet.tweet %> </small><br />
+        </div>
+    </div>
+    </article>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav class="navbar is-fixed-bottom">
+	<div class="navbar-menu">
+		<div class="navbar-item">
+			<div class="field is-grouped">
+				<p class="control">
+					<%= link_to 'Cancel', tweets_path, class: "button is-dark" %>
+				</p>
+		</div>
+	</div>
+</nav>
