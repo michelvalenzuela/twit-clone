@@ -37,7 +37,7 @@
                 <nav class="level">
                     <div class="level-left is-mobile"> 
                         <%= link_to tweet_path(tweet) do %>
-                                hace
+                               <small> hace </small>
                              <%= tweet.time_since_publish %>
                         <% end %>
 
@@ -48,18 +48,22 @@
                             </span>
                         <% end %>
                         <% else %>
-                            <small>Not Editable for u </small>
-
+                            <p class="is-hidden">u cant</p>
                         <%end %>
-                        <%= link_to tweet, method: :delete, data: { confirm: "are you sure u want to delete this tweet?"} do %>
-                            <span class="icon"> 
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>                             
-                            </span>  
-                        <%   end    %>
+                        
+                        <%if tweet.user.email == current_user.email %>
+                                <%= link_to tweet, method: :delete, data: { confirm: "are you sure u want to delete this tweet?"} do %>
+                                        <span class="icon"> 
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>                             
+                                        </span>  
+                                <%   end    %>
+                        <% else %>
+                                    <p class="is-hidden">u cant</p>
+                        <%end%>
                         
                         
                             <% if user_signed_in? && tweet.user_id != current_user.id  %>
-                                <div><%= link_to 'Retweet', new_tweet_path(tweet_id: tweet) %></div>
+                                <div><%= link_to 'Retweet', new_tweet_path(tweet_id: tweet), class: "ml-2 mr-2" %></div>
                             <% end %>
                             <% if current_user.liked? tweet %>
                                 <%= link_to dislike_tweet_path(tweet.id), method: :put do %>
