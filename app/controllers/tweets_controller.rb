@@ -3,13 +3,36 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy retweet]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /tweets or /tweets.json
+  USERS_FOLLOW = 9
+
   def index
-    @tweets = Tweet.page params[:page]
+    @users = User.all.limit(USERS_FOLLOW)
     @tweet = Tweet.new
+    @query = params[:query]
+    if @query.nil?
+      @tweets = Tweet.page params[:page]
+    else
+      @tweets = Tweet.where("tweets.tweet ILIKE ?",["%#{@query}%"]).page(params[:page])
+      @users = User.where("users.name ILIKE ?",["%#{@query}%"]).page(params[:page])
+    end
+    
+    @feed_items = current_user.feed.page params[:page] unless current_user.nil?
+    @tagg = Tag.all
+    
+  end
+  
+  def hashtags
+    
+    @tag = Tag.find_by(name: params[:name])
+    @tweets = @tag.tweets 
+    @tweet = Tweet.new
+    @tweeets = Tag.page params[:page]
   end
 
   # GET /tweets/1 or /tweets/1.json
   def show
+    @user = User.find(params[:id])
+    
   end
 
   # GET /tweets/new
@@ -33,6 +56,13 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
+  end
+
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Tweet.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
   end
 
   # POST /tweets or /tweets.json
@@ -87,6 +117,8 @@ class TweetsController < ApplicationController
     
     end
   end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

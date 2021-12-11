@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.4'
 
+require 'faker'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
@@ -28,6 +30,9 @@ gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise'
 gem 'acts_as_votable'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
+gem 'faker', '~> 2.19'
+gem 'binding_of_caller'
+gem 'activeadmin'
 
 
 gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'

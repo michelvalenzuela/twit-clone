@@ -1,19 +1,19 @@
 
 <div class="column is-half">
-    <% if user_signed_in? %>
-    <article class="media box"> 
-        <figure class="media-left"> 
-            <p class="image is-64x64"> 
-                <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name)%>
-            </p>
-        </figure>
-        <div class="media-content">
-            <%= render 'tweets/form' %>
-        </div>    
-    </article>
-    <%end%>
+<% if user_signed_in? %>
+<article class="media box"> 
+    <figure class="media-left"> 
+        <p class="image is-64x64"> 
+            <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name)%>
+        </p>
+    </figure>
+    <div class="media-content">
+        <%= render 'tweets/form' %>
+    </div>    
+</article>
+<%end%>
 
-    
+
 <% (@tweets.order(created_at: :desc)).each do | tweet | %>
     <div class="box"> 
         <article class="media"> 
@@ -90,8 +90,5 @@
     </div>
 <% end %>
 
-<%= paginate @tweets%>
+<%= paginate @tweeets%>
 </div>
-
-
-   

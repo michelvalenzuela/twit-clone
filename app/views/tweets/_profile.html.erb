@@ -11,7 +11,8 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                          <strong><%= current_user.name %></strong><br />
+                       
+                          <strong> <%= link_to current_user.name, current_user, style: 'color:#33E9FF'  %></strong><br />
                           <small><%= current_user.username%></small>                          
                        </p>
                     </div>
@@ -29,13 +30,13 @@
                     <div class="level-item has-centered-text">
                         <div>
                             <p class="heading">Following</p>
-                            <p class="title is-6">123</p>
+                            <%= current_user.following.count %>
                         </div>                    
                     </div>
                     <div class="level-item has-centered-text">
                         <div>
                             <p class="heading">Followers</p>
-                            <p class="title is-6">300k</p>
+                            <%= current_user.followers.count %>
                         </div>                    
                     </div>
                 </div>
