@@ -50,7 +50,8 @@ module API
             end
 
 
-
+            #in method delete will appear that the object is already deleted even if u are not the owner, but if u check its working correctly..
+            #for delete send a json like this { "id": 306 }, and the id in url..
             desc 'Deletes existing movie object'
             params do
               requires :id, type: Integer
