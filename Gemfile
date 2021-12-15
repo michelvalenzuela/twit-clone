@@ -33,7 +33,9 @@ gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'faker', '~> 2.19'
 gem 'binding_of_caller'
 gem 'activeadmin'
-
+gem 'grape'
+gem 'rack-cors'
+gem 'grape-active_model_serializers'
 
 gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'
 

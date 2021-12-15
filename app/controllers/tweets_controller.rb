@@ -16,6 +16,7 @@ class TweetsController < ApplicationController
       @users = User.where("users.name ILIKE ?",["%#{@query}%"]).page(params[:page])
     end
     
+    
     @feed_items = current_user.feed.page params[:page] unless current_user.nil?
     @tagg = Tag.all
     
@@ -39,18 +40,26 @@ class TweetsController < ApplicationController
   def new
     @tweet = current_user.tweets.new
     @retweet = Tweet.find(params["tweet_id"])
+    if @retweet.nil?
+      @tweet = current_user.tweets.new
+    else
+      @tweet = current_user.tweets.new
+      @retweet.increment!(:retweet_count)
+    end
 
   end
 
   def like
     @tweet = Tweet.find(params[:id])
     @tweet.liked_by current_user
+    @tweet.increment!(:likes_count)
     redirect_to '/'
   end
   
   def dislike
     @tweet = Tweet.find(params[:id])
     @tweet.disliked_by current_user
+    @tweet.decrement!(:likes_count)
     redirect_to '/'
   end
 

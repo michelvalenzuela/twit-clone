@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         end
   end
   
-  
+  mount API::Base, at: "/"
 
   devise_for :users
   resources :tweets
