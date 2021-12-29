@@ -16,9 +16,12 @@ esta usa basic auth, consiste en crear un user (email, password..) y ponerlo en 
     <code><b>localhost:3000/api/v1/tweets/AQUIVAELIDDELTWEET</b></code>
   <ul>
 </ol>
-<h3>Para crear un tweet ir a la ruta POST (usar basic auth..)</h3>
+<h3>Para crear un tweet ir a la ruta POST (usar basic auth..), cabe destacar que retweet id es un campo opcional y se puede hacer POST con tweet...) </h3>
 <ol>
     <code><b>localhost:3000/api/v1/tweets</b></code>
+    <li>El formato de la consulta debe ser</li>
+    <code><b>{"tweet": "wenawena", "retweet_id": "1"}</b></code>
+    <ul>
     <li>la respuesta deberia ser</li>
     <code><b>
     {
@@ -28,7 +31,7 @@ esta usa basic auth, consiste en crear un user (email, password..) y ponerlo en 
         "tweet": "wenawena",
         "created_at": "2021-12-29T22:51:28.722Z",
         "updated_at": "2021-12-29T22:51:28.722Z",
-        "retweet_id": null,
+        "retweet_id": 1,
         "likes_count": 0,
         "retweet_count": 0
     },
