@@ -36,7 +36,7 @@ gem 'activeadmin'
 gem 'grape'
 gem 'rack-cors'
 gem 'grape-active_model_serializers'
-
+gem 'grape_on_rails_routes'
 gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'
 
 # Use Active Storage variant
