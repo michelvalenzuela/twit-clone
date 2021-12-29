@@ -45,6 +45,7 @@ class TweetsController < ApplicationController
     else
       @tweet = current_user.tweets.new
       @retweet.increment!(:retweet_count)
+
     end
 
   end
@@ -105,11 +106,16 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1 or /tweets/1.json
   def destroy
+    if not @tweet.retweet_id.nil?
+      @tweet.decrement!(:retweet_count)
+      end
     @tweet.destroy
+    
     respond_to do |format|
       format.html { redirect_to tweets_url, notice: "Tweet was successfully destroyed." }
       format.json { head :no_content }
     end
+
   end
 
 
