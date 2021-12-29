@@ -106,9 +106,9 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1 or /tweets/1.json
   def destroy
-    if not @tweet.retweet_id.nil?
-      @tweet.decrement!(:retweet_count)
-      end
+    #if not @tweet.retweet_id.nil?
+     # @tweet.decrement!(:retweet_count)
+      #end
     @tweet.destroy
     
     respond_to do |format|
