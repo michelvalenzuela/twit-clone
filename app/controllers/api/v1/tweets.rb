@@ -2,10 +2,11 @@ module API
     module V1
       class Tweets < Grape::API
         include API::V1::Defaults
+        MAXTWEET = 50
             resource :tweets do
               desc "Return all Tweets"
               get "" do
-                Tweet.all
+                Tweet.all.limit(MAXTWEET)
                 
               end
 
