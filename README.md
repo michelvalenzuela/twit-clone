@@ -40,7 +40,7 @@ esta usa basic auth, consiste en crear un user (email, password..) y ponerlo en 
     </b>
     </code>
 </ol>
-<h3>el hito 2 de api no lo hice...</h3>
+
 
 
 Heroku link : https://shielded-sands-58200.herokuapp.com/
